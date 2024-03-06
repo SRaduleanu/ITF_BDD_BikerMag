@@ -18,7 +18,7 @@
 * Change the current working directory to the location where you want the cloned directory using the `cd` command
 * Type `git clone` and paste the URL link of the repository
 ```
-git clone https://github.com/SRaduleanu/BikerMag_BDD_ITF
+git clone https://github.com/SRaduleanu/ITF_BDD_BikerMag
 ```
 * Press **Enter** to create your local clone
 ---

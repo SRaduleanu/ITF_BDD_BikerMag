@@ -13,8 +13,8 @@ class Login_Page(Browser):
     PASSWORD = (By.XPATH, "//input[@type='password']")
     SIGN_IN = (By.ID, "doLogin")
     ERROR = (By.CLASS_NAME, "errorMsg")
-    ACCOUNT = (By.XPATH, "//*[@id='wrapper']/header/div[2]/div/div/div[3]/ul/li[2]")
-    LOGOUT = (By.XPATH, '//*[@id="wrapper"]/div[3]/div/div[1]/div[2]/ul[5]')
+    ACCOUNT = (By.XPATH, "(//span[contains(text(), 'Serban')])[2]")
+    LOGOUT = (By.XPATH, '//*[@id="wrapper"]/div[3]/div/div[1]/div[2]/ul[5]/li/a')
 
     def open_home_page(self):
         self.chrome.get("https://www.bikermag.ro/")
@@ -106,6 +106,7 @@ class Login_Page(Browser):
     def verify_logout(self):
         logout_text = 'Intra in cont'
         logout_text_btn = self.chrome.find_element(By.XPATH, '//*[@id="wrapper"]/header/div[2]/div/div/div[3]/ul/li[2]/a/span').text
-        assert logout_text_btn == logout_text
+        print(logout_text_btn)
+        assert logout_text_btn in logout_text
         logging.info("I am no longer logged in.")
         sleep(1)

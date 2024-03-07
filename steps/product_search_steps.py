@@ -16,6 +16,6 @@ def step_impl(context):
 def step_impl(context):
     context.product_search_page.click_search_button()
 
-@then('The search results are displayed containing "{expected_text}')
+@then('The search results are displayed containing "Toate produsele"')
 def step_impl(context):
     context.product_search_page.verify_results()

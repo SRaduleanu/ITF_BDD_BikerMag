@@ -5,7 +5,7 @@ import logging
 
 class Product_Search(Browser):
 
-    SEARCH = (By.XPATH, '//*[@id="_autocompleteSearchMainHeader"]')
+    SEARCH = (By.ID, "_autocompleteSearchMainHeader")
     RESULTS = (By.CLASS_NAME, 'catTitle')
     SEARCH_BTN = (By.ID, '_doSearch')
 
@@ -25,8 +25,10 @@ class Product_Search(Browser):
         except Exception as i:
             logging.error(f'An error occurred while trying to click the search button: {str(i)}')
 
-    def verify_results(self, expected_text):
+    def verify_results(self):
+        expected_text = 'Toate Produsele'
         results_text = self.chrome.find_element(*self.RESULTS).text
+        print(results_text)
         if results_text == expected_text:
             assert True, "The search was successful, items displayed"
         else:

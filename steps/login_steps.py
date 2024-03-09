@@ -1,5 +1,16 @@
 from behave import *
 
+
+# steps for T1 scenario
+@given('I am accessing the BikerMag website')
+def step_impl(context):
+    context.login_page.open_home_page()
+
+@then('Click Sunt de Acord')
+def step_impl(context):
+    context.login_page.accept_cookies()
+
+# steps for T2 scenario
 @given('I am on the BikerMag homepage and I want to initiate the login process with invalid password')
 def step_impl(context):
     context.login_page.open_home_page()
@@ -24,6 +35,7 @@ def step_impl(context):
 def step_impl(context, login_error):
     context.login_page.login_failed(login_error)
 
+# steps for T3 scenario
 @when('I enter my valid password')
 def step_impl(context):
     context.login_page.insert_password()
@@ -36,6 +48,7 @@ def step_impl(context):
 def step_impl(context):
     context.login_page.my_account_page()
 
+# steps for T4 scenario
 @when('I check to see if I am logged in')
 def step_impl(context):
     context.login_page.verify_login()
@@ -51,3 +64,4 @@ def step_impl(context):
 @then('I check to see if I am no longer logged in')
 def step_impl(context):
     context.login_page.verify_logout()
+

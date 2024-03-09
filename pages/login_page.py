@@ -15,7 +15,9 @@ class Login_Page(Browser):
     ERROR = (By.CLASS_NAME, "errorMsg")
     ACCOUNT = (By.XPATH, "(//span[contains(text(), 'Serban')])[2]")
     LOGOUT = (By.XPATH, '//*[@id="wrapper"]/div[3]/div/div[1]/div[2]/ul[5]/li/a')
+    ACCEPT_COOKIES_BTN = (By.ID, '__gomagCookiePolicy')
 
+# methods for T1 scenario
     def open_home_page(self):
         self.chrome.get("https://www.bikermag.ro/")
 
@@ -65,11 +67,11 @@ class Login_Page(Browser):
             login_error = self.chrome.find_element(*self.ERROR)
             login_error_text = login_error.text
             assert error_message in login_error_text
-            #login_error.accept()
             logging.info("Login failed {}".format(error_message))
         except Exception as i:
             logging.error(f'The error message does not match: {str(i)}')
 
+# methods for T2 scenario
     def insert_password(self):
         try:
             userpassword = self.chrome.find_element(*self.PASSWORD)
@@ -91,6 +93,7 @@ class Login_Page(Browser):
         logging.info('I am logged in.')
         sleep(1)
 
+# methods for T3 scenario
     def click_my_account(self):
         self.chrome.find_element(*self.ACCOUNT).click()
         sleep(1)
@@ -110,3 +113,9 @@ class Login_Page(Browser):
         assert logout_text_btn in logout_text
         logging.info("I am no longer logged in.")
         sleep(1)
+
+# methods for T4 scenario
+
+    def accept_cookies(self):
+        cookies_btn = self.chrome.find_element(*self.ACCEPT_COOKIES_BTN)
+        cookies_btn.click()

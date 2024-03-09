@@ -7,10 +7,16 @@
 -   Use of multiple selectors
 -   The code is structured in folders for **features, pages** and **steps**
 -   The tests were made on the www.bikermag.ro website and consists of:\
-        - @T1 - Scenario outline that tests the login with different invalid passwords\
-        - @T2 - Scenario that tests the login with valid password\
-        - @T3 - Scenario that tests the logout feature\
-        - @T4 - Scenario that tests searching for a product in the search bar
+        - @T1 - Scenario to accept cookies
+        - @T2 - Scenario outline that tests the login with different invalid passwords\
+        - @T3 - Scenario that tests the login with valid password\
+        - @T4 - Scenario that tests the logout feature\
+        - @T5 - Scenario that tests searching for a product in the search bar\
+        - @T6 - Scenario that tests applying filters to search for products\
+        - @T7 - Scenario that adds a delivery address to my account\
+        - @T8 - Scenario that deletes a delivery address from my account\
+        - @T9 - Scenario that searches for the cheapest product in a category and add it to favorites\
+        - @T10 - Scenario that searches for a product and adds it to the cart
 
 ---
 ### Installing/cloning the project:

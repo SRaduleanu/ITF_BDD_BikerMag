@@ -7,7 +7,7 @@
 -   Use of multiple selectors
 -   The code is structured in folders for **features, pages** and **steps**
 -   The tests were made on the www.bikermag.ro website and consists of:\
-        - @T1 - Scenario to accept cookies
+        - @T1 - Scenario to accept cookies\
         - @T2 - Scenario outline that tests the login with different invalid passwords\
         - @T3 - Scenario that tests the login with valid password\
         - @T4 - Scenario that tests the logout feature\

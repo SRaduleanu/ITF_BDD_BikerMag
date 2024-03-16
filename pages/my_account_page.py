@@ -3,6 +3,8 @@ import logging
 from browser import Browser
 from time import sleep
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class My_Account_Page(Browser):
 
@@ -27,17 +29,17 @@ class My_Account_Page(Browser):
 
     def click_adauga_adresa_noua(self):
         self.chrome.find_element(*self.ADRESA_NOUA_BTN).click()
-        sleep(1)
 
     def fill_in_fields(self):
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.ADD_JUDET))
         self.chrome.find_element(*self.ADD_JUDET).click()
-        sleep(1)
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#_shippingRegion > option[value="267"]')))
         self.chrome.find_element(By.CSS_SELECTOR, '#_shippingRegion > option[value="267"]').click()
-        sleep(1)
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.ADD_CITY))
         self.chrome.find_element(*self.ADD_CITY).click()
-        sleep(1)
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#_shippingCity > option[value="4758"]')))
         self.chrome.find_element(By.CSS_SELECTOR, '#_shippingCity > option[value="4758"]').click()
-        sleep(1)
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.ADD_ADDRESS))
         self.chrome.find_element(*self.ADD_ADDRESS).send_keys('str. B.ST.Delavrancea, nr.1')
         self.chrome.find_element(*self.ADD_POSTAL_CODE).send_keys('106400')
         self.chrome.find_element(*self.ADD_PHONE).send_keys('0761585630')

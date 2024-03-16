@@ -30,7 +30,6 @@ class Login_Page(Browser):
                 login_button = self.chrome.find_element(*self.LOGIN_BTN)
                 if login_button:
                     login_button.click()
-                    sleep(1)
                     break
                 else:
                     raise AssertionError("Login button element not found")
@@ -42,7 +41,6 @@ class Login_Page(Browser):
         try:
             user_email = self.chrome.find_element(*self.EMAIL)
             user_email.send_keys('tester.sraduleanu@yahoo.com')
-            sleep(1)
         except Exception as i:
             logging.error(f'An error occurred while inserting the email: {str(i)}')
 
@@ -50,7 +48,6 @@ class Login_Page(Browser):
         try:
             user_password = self.chrome.find_element(*self.PASSWORD)
             user_password.send_keys(password)
-            sleep(1)
         except Exception as i:
             logging.error(f'An error occurred while inserting the password: {str(i)}')
 
@@ -58,11 +55,11 @@ class Login_Page(Browser):
         try:
             sign_in_button = self.chrome.find_element(*self.SIGN_IN)
             sign_in_button.click()
-            sleep(2)
         except Exception as i:
             logging.error(f'An error occurred while clicking the "Intra in cont" authentication button: {str(i)}')
 
     def login_failed(self, error_message):
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.ERROR))
         try:
             login_error = self.chrome.find_element(*self.ERROR)
             login_error_text = login_error.text
@@ -76,7 +73,6 @@ class Login_Page(Browser):
         try:
             userpassword = self.chrome.find_element(*self.PASSWORD)
             userpassword.send_keys('Tester123')
-            sleep(1)
         except Exception as i:
             logging.error(f"An error occurred while inserting the password: {str(i)}")
 
@@ -84,25 +80,23 @@ class Login_Page(Browser):
         account_url = "https://www.bikermag.ro/contul-meu"
         assert self.chrome.current_url == account_url
         logging.info('Test passed: Current URL match the expected account URL')
-        sleep(1)
 
     def verify_login(self):
         account = self.chrome.find_element(*self.ACCOUNT)
         account_text = 'Buna, Serban'
         assert account.text == account_text
         logging.info('I am logged in.')
-        sleep(1)
 
 # methods for T3 scenario
     def click_my_account(self):
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.ACCOUNT))
         self.chrome.find_element(*self.ACCOUNT).click()
-        sleep(1)
 
     def click_logout(self):
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.LOGOUT))
         try:
             logout_account = self.chrome.find_element(*self.LOGOUT)
             logout_account.click()
-            sleep(1)
         except Exception as i:
             logging.error(f'An error occurred while trying to logout: {str(i)}')
 
@@ -112,7 +106,6 @@ class Login_Page(Browser):
         print(logout_text_btn)
         assert logout_text_btn in logout_text
         logging.info("I am no longer logged in.")
-        sleep(1)
 
 # methods for T4 scenario
 

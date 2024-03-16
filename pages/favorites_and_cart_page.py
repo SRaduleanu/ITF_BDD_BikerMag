@@ -27,13 +27,13 @@ class Favorites_And_Cart_Page(Browser):
     def ascending_sort(self):
         self.chrome.find_element(By.CLASS_NAME, 'input-s').click()
         self.chrome.find_element(*self.ASCENDING).click()
-        sleep(2)
 
     def click_cheapest_product(self):
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.CHEAPEST_PRODUCT))
         self.chrome.find_element(*self.CHEAPEST_PRODUCT).click()
-        sleep(1)
 
     def add_to_favorites(self):
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.ADD_FAVORITE))
         self.chrome.find_element(*self.ADD_FAVORITE).click()
 
     def verify_favorites(self):
@@ -50,24 +50,24 @@ class Favorites_And_Cart_Page(Browser):
             product = self.chrome.find_element(*self.SEARCH)
             product.send_keys('Armura moto pentru copii')
             product.send_keys(Keys.ENTER)
-            sleep(1)
             logging.info('Successfully typed the product name')
         except Exception as i:
             logging.error(f'An error occurred while trying to type the product name: {str(i)}')
 
     def access_product_page(self):
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.PRODUCT_TO_ADD_TO_CART))
         click_product = self.chrome.find_element(*self.PRODUCT_TO_ADD_TO_CART)
         click_product.click()
-        sleep(1)
 
     def add_to_cart(self):
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.ADD_TO_CART_BTN))
         add_cart = self.chrome.find_element(*self.ADD_TO_CART_BTN)
         add_cart.click()
         sleep(2)
 
     def verify_cart(self):
         self.chrome.get('https://www.bikermag.ro/cos-de-cumparaturi')
-        sleep(1)
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of_element_located(*self.CART_ITEM))
         cart_item = self.chrome.find_element(*self.CART_ITEM)
         if cart_item:
             logging.info('Item was successsfully added to the cart!')
